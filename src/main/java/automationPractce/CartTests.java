@@ -2,6 +2,9 @@ package automationPractce;
 
 import automationPractce.annotation.TestRun;
 import automationPractce.model.EntityDress;
+import com.academy.telesens.automationpractice.annotation.Log;
+import com.academy.telesens.automationpractice.annotation.TestRun;
+import com.academy.telesens.automationpractice.model.EntityDress;
 
 public class CartTests {
 
@@ -14,8 +17,8 @@ public class CartTests {
     }
 
     @TestRun
-    public void beforeAnnotation() {
-        System.out.println("");
+    public void testUnderAnnotation() {
+        System.out.println("testUnderAnnotation");
     }
 
     public void testAddDressToCart(EntityDress addedDress, int amount) {
@@ -28,9 +31,9 @@ public class CartTests {
         System.out.println("Go to cart");
 
         EntityDress entityFromCart = readEntityFromCart();
-        int amountFromCart = readAmountFromCart();
+        int  amountFromCart = readAmountFromCart();
         double totalFromCart = readTotalFromCart();
-        double total = amountFromCart * addedDress.getPrice();
+        double total = amountFromCart*addedDress.getPrice();
         System.out.println(String.format("Read entity '%s' from cart", entityFromCart));
 
 
@@ -42,7 +45,7 @@ public class CartTests {
     }
 
     private double readTotalFromCart() {
-        return 52.0;
+        return 156.0;
     }
 
     private int readAmountFromCart() {
@@ -74,5 +77,11 @@ public class CartTests {
         System.out.println(String.format("Open browser '%s'", browser));
         System.out.println(String.format("Go to '%s'", baseUrl));
         System.out.println("Go to 'Dresses' category");
+    }
+
+
+    @TestRun
+    private void testUnderAnnotation2() {
+//        System.out.println("testUnderAnnotation2");
     }
 }
