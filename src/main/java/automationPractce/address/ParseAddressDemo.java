@@ -1,7 +1,6 @@
 package automationPractce.address;
 
-import automationPractce.model.MyAddressData;
-import com.telesens.automationpractice.appmanager.model.AddressData;
+import com.academy.automationpractice.ddt.framework.model.AddressData;
 
 public class ParseAddressDemo {
     public static void main(String[] args) {
@@ -14,7 +13,7 @@ public class ParseAddressDemo {
 
     private static AddressData parseAddress(String rawLine) {
         String[] splitStrung = rawLine.split(",");
-        AddressData address = new MyAddressData()
+        AddressData address = new AddressData()
 
                 .withAddress(splitStrung[2])
                 .withFirstName(splitStrung[0])
