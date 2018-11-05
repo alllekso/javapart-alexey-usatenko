@@ -1,6 +1,7 @@
 package automationPractce.model;
 
-import com.telesens.automationpractice.appmanager.model.AddressData;
+
+import com.academy.automationpractice.ddt.framework.model.AddressData;
 
 public class MyAddressData extends AddressData {
 
