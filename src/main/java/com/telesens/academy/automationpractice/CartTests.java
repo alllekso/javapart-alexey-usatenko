@@ -1,10 +1,8 @@
 package com.telesens.academy.automationpractice;
 
+import com.telesens.academy.automationpractice.annotation.Log;
 import com.telesens.academy.automationpractice.annotation.TestRun;
 import com.telesens.academy.automationpractice.model.EntityDress;
-import com.academy.telesens.automationpractice.annotation.Log;
-import com.academy.telesens.automationpractice.annotation.TestRun;
-import com.academy.telesens.automationpractice.model.EntityDress;
 
 public class CartTests {
 
@@ -79,7 +77,7 @@ public class CartTests {
         System.out.println("Go to 'Dresses' category");
     }
 
-
+    @Log
     @TestRun
     private void testUnderAnnotation2() {
 //        System.out.println("testUnderAnnotation2");

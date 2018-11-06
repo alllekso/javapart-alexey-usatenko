@@ -1,18 +1,20 @@
 package com.telesens.academy.lesson12;
 
-import org.testng.Assert;
-import org.testng.annotations.Test;
-
-import java.util.Arrays;
-import java.util.Objects;
-
-public class Entry {
+public class Entry implements Comparable<Entry> {
+    private String value;
     private long key;
-    private String Value;
 
-    public Entry(long key, String Value){
+    public Entry(long key, String value) {
+        this.value = value;
         this.key = key;
-        this.Value = Value;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
     }
 
     public long getKey() {
@@ -23,52 +25,38 @@ public class Entry {
         this.key = key;
     }
 
-    public String getValue() {
-        return Value;
-    }
-
-    public void setValue(String value) {
-        Value = value;
-    }
-
     @Override
     public String toString() {
         return "Entry{" +
-                "key=" + key +
-                ", Value='" + Value + '\'' +
+                "value='" + value + '\'' +
+                ", key=" + key +
                 '}';
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Entry)) return false;
+
         Entry entry = (Entry) o;
-        return key == entry.key &&
-                Objects.equals(Value, entry.Value);
+
+
+        if (getKey() != entry.getKey()) return false;
+        return getValue() != null ? getValue().equals(entry.getValue()) : entry.getValue() == null;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(key, Value);
+        int result = getValue() != null ? getValue().hashCode() : 0;
+        result = 31 * result + (int) (getKey() ^ (getKey() >>> 32));
+        return result;
     }
 
-//    @Test
-//    public void testSimpleEntry() {
-//        System.out.println("start 'testSimpleEntry'");
-//        long key = 12L;
-//        String value = "demoValue";
-//
-//        Entry entry = new Entry(key, value);
-//        Entry entryEqual = new Entry(key, value);
-//
-//        Assert.assertEquals(key, entry.getKey());
-//        Assert.assertEquals(value, entry.getValue());
-//
-//        Assert.assertEquals(entry, entryEqual);
-//    }
-
+    @Override
+    public int compareTo(Entry other) {
+        return this.getValue().compareTo(other.getValue());
     }
+}
 
 
 

@@ -1,3 +1,4 @@
+
 package com.telesens.academy.automationpractice.address;
 
 import com.academy.automationpractice.ddt.framework.model.AddressData;
@@ -17,3 +18,4 @@ public class ParseAddressDemo {
                 .withAddress("address");
         return address;
     }
+}

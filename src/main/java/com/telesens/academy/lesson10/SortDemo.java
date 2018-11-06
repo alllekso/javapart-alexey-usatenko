@@ -1,6 +1,8 @@
 package com.telesens.academy.lesson10;
 
 import com.telesens.academy.automationpractice.model.EntityDress;
+import com.telesens.academy.automationpractice.model.comparator.ComparatorByNameAndPriceDesc;
+import com.telesens.academy.automationpractice.model.comparator.ComparatorDressByName;
 
 import java.util.Arrays;
 
@@ -10,6 +12,14 @@ public class SortDemo {
         System.out.println(Arrays.toString(actualDresses));
         Arrays.sort(actualDresses);
         System.out.println(Arrays.toString(actualDresses));
+        System.out.println("***sort by name***");
+        Arrays.sort(actualDresses, new ComparatorDressByName());
+        System.out.println(Arrays.toString(actualDresses));
+
+        System.out.println("***sort ByNameAndPriceDesc***");
+        Arrays.sort(actualDresses, new ComparatorByNameAndPriceDesc());
+        System.out.println(Arrays.toString(actualDresses));
+
     }
 
     private static EntityDress[] getActualDresses() {
@@ -43,4 +53,5 @@ public class SortDemo {
                         .withPrice(28.98),
         };
     }
+
 }
