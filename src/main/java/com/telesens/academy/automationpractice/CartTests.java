@@ -1,7 +1,7 @@
-package automationPractce;
+package com.telesens.academy.automationpractice;
 
-import automationPractce.annotation.TestRun;
-import automationPractce.model.EntityDress;
+import com.telesens.academy.automationpractice.annotation.TestRun;
+import com.telesens.academy.automationpractice.model.EntityDress;
 import com.academy.telesens.automationpractice.annotation.Log;
 import com.academy.telesens.automationpractice.annotation.TestRun;
 import com.academy.telesens.automationpractice.model.EntityDress;

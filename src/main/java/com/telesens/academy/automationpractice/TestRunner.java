@@ -1,11 +1,11 @@
-package automationPractce;
+package com.telesens.academy.automationpractice;
 
-import automationPractce.model.EntityDress;
+import com.telesens.academy.automationpractice.model.EntityDress;
 
 public class TestRunner {
     public static void main(String[] args) {
         CartTests cartTests = new CartTests();
-        cartTests.init("firefox", "http://automationpractice.com");
+        cartTests.init("firefox", "http://com.telesens.academy.automationpractice.com");
 
         EntityDress entityDress1 = new EntityDress();
         entityDress1.setName("Printed Dress");

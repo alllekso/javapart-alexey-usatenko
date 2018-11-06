@@ -1,4 +1,4 @@
-package automationPractce.model;
+package com.telesens.academy.automationpractice.model;
 
 import java.util.Objects;
 
