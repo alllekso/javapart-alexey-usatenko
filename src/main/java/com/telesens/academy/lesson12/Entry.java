@@ -53,20 +53,20 @@ public class Entry {
         return Objects.hash(key, Value);
     }
 
-    @Test
-    public void testSimpleEntry() {
-        System.out.println("start 'testSimpleEntry'");
-        long key = 12L;
-        String value = "demoValue";
-
-        Entry entry = new Entry(key, value);
-        Entry entryEqual = new Entry(key, value);
-
-        Assert.assertEquals(key, entry.getKey());
-        Assert.assertEquals(value, entry.getValue());
-
-        Assert.assertEquals(entry, entryEqual);
-    }
+//    @Test
+//    public void testSimpleEntry() {
+//        System.out.println("start 'testSimpleEntry'");
+//        long key = 12L;
+//        String value = "demoValue";
+//
+//        Entry entry = new Entry(key, value);
+//        Entry entryEqual = new Entry(key, value);
+//
+//        Assert.assertEquals(key, entry.getKey());
+//        Assert.assertEquals(value, entry.getValue());
+//
+//        Assert.assertEquals(entry, entryEqual);
+//    }
 
     }
 

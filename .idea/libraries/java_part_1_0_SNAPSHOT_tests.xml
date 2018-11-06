@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="java-part-1.0-SNAPSHOT-tests">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/src/main/java/automationPractce/lib/java-part-1.0-SNAPSHOT-tests.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
