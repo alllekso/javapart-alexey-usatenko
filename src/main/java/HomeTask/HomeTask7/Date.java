@@ -1,4 +1,7 @@
 package HomeTask.HomeTask7;
+
+
+
 //1) a) Создать класс Date, который имеет следующие поля:
 //		- день
 //		- месяц
@@ -39,8 +42,6 @@ package HomeTask.HomeTask7;
 //		-* реализовать метод checkData(int day, int month, int year), который проверяет существование введенной даты
 //		-* использовать проверку checkData в конструкторах при создании класса и при попытке изменить поле методом set,
 //		в случае ошибки не проводить изменение, а вывести сообщение на консоль
-//		-** реализовать метод differenceInDays(int day, int month, int year), который принимает другую дату и вычисляет в
-//			днях между датами
 //
 //		- переопределить метод toString();
 //			который возвратит строковое представление даты: 25.01.2017
@@ -118,7 +119,7 @@ public class Date {
     }
 
     public boolean CheckDate(int day, int month, int year) {
-        if (day > 0 && day < 31) {
+        if (day > 0 && day <= 31) {
             this.Day = day;
         } else return false;
         if (month > 0 && month < 13) {
@@ -132,22 +133,18 @@ public class Date {
         return true;
     }
     public int nextDay() {
-        int nextDay;
-        if (Day <= 31){
-            nextDay = Day + 1;
-        }
-        else {
+        int nextDay = Day + 1;
+        nextDay = nextDay % 31;
+        if (nextDay == 0){
             nextDay = 1;
         }
         return nextDay;
     }
 
     public int nextMonth() {
-        int nextMonth;
-        if (Month <= 12){
-            nextMonth = Month + 1;
-        }
-        else {
+        int nextMonth = Month + 1;
+        nextMonth = nextMonth % 12;
+        if (nextMonth == 0){
             nextMonth = 1;
         }
         return nextMonth;
@@ -159,15 +156,22 @@ public class Date {
         return nextYear;
     }
     public Date addDays(int daysAmount) {
-        Date date = new Date(Day, Month, Year);
-        int newDay = Day + daysAmount;
-        if (newDay > 31){
-            Day = (Day + daysAmount) - 31;
-            Month = nextMonth();
-            if (Month > 12){
-                Year = nextYear();
+        if (Day + daysAmount > 31) {
+            for (int d = 0; d < daysAmount; d++){
+                Day = nextDay();
+                if ((Day == 31) && (d < (daysAmount - 1))) {
+                    Month = nextMonth();
+                    if ((Month == 12)){
+                        Year = nextYear();
+                    }
+                }
             }
-        }
-        return date;
+        } else Day = Day + daysAmount;
+        return new Date(Day, Month, Year);
+    }
+
+
+    public void printDatе(Date date){
+        System.out.println(date.toString());
     }
 }
