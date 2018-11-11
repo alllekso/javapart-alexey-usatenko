@@ -53,6 +53,12 @@ public class Date {
     private int Year;
 
     public Date(int day, int month, int year) {
+
+        if (CheckDate(day, month, year)) {
+            this.Day = day;
+            this.Month = month;
+            this.Year = year;
+        } else System.out.println("You created Date in wrong format: ");
         this.Day = day;
         this.Month = month;
         this.Year = year;
@@ -63,45 +69,64 @@ public class Date {
     }
 
     public void setDay(int day) {
-        Day = day;
+
+        if (CheckDate(day, Month, Year)){
+        this.Day = day;
+    } else {
+        System.out.printf("You set wrong day: %d\n" +
+                "Please, change back Day to valid range:\n", day);
+        this.Day = day;
     }
+}
 
     public int getMonth() {
         return Month;
     }
 
     public void setMonth(int month) {
-        Month = month;
+        if (CheckDate(Day, month, Year)){
+            this.Month = month;
+        } else {
+            System.out.printf("You set wrong month: %d\n" +
+                    "Please, change back Month to valid range:\n", month);
+            this.Month = month;
+        }
     }
 
     public int getYear() {
         return Year;
     }
+//ЕСЛИ Я УСТАНАВЛИВАЮ НЕВЕРНЫЙ ГОД - МНЕ ВЫСВЕЧИВАЕТСЯ ОШИБКА:
+    //"You set wrong year: %d\n" + "Please, change back Year to valid range:\n", year
+    // И МНЕ НЕ ВЫСВЕЧИВАЕТСЯ ОШИБКА О НЕВЕРНОМ ДНЕ, Т.К. ДЕНЬ ВЕРНЫЙ.
+    // НО ЕСЛИ Я УСТАНАВЛИВАЮ НЕВЕРНЫЙ ДЕНЬ, ТО МНЕ ПРИХОДИТ ОШИБКА И О НЕВЕРНОМ ДНЕ, И О НЕВЕРНОМ ГОДЕ
 
     public void setYear(int year) {
-        Year = year;
-
+        if (CheckDate(Day, Month, year)){
+            this.Year = year;
+        } else {
+            System.out.printf("You set wrong year: %d\n" +
+                    "Please, change back Year to valid range:\n", year);
+            this.Year = year;
+        }
     }
 
     @Override
     public String toString() {
-        return "Date{" +
-                "Day: " + Day +
-                ", Month: " + Month +
-                ", Year: " + Year +
+        return "Date{" + Day + "." + Month + "." + Year +
                 '}';
     }
 
     public boolean CheckDate(int day, int month, int year) {
         if (day > 0 && day < 31) {
-            this.setDay(day);
+            this.Day = day;
         } else return false;
         if (month > 0 && month < 13) {
-            this.setDay(month);
+            this.Month = month;
         } else return false;
 
-        if (year > 1970 && year < 2020) {
-            this.setDay(year);
+        if (year >= 1970 && year <= 2020) {
+                this.Year = year;
         } else return false;
 
         return true;
