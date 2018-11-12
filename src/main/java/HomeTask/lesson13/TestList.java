@@ -11,10 +11,7 @@
 //	j) Удалить из списка все имена кроме Kate и Helen
 package HomeTask.lesson13;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class TestList {
     public static void main(String[] args) {
@@ -40,6 +37,11 @@ public class TestList {
         System.out.println("Reversed sort:" + list);
         list.replaceAll(String::toUpperCase);
         System.out.println("First char in upper case" + list);
-//Не смог!
     }
+
+/*public static List Sort(List list){
+        for (int i = 0; i < list.lastIndexOf(); i++){
+            
+        }*/
+/*}*/
 }

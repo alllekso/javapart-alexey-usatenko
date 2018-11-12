@@ -71,21 +71,21 @@ public class Date {
 
     public void setDay(int day) {
 
-        if (CheckDate(day, Month, Year)){
-        this.Day = day;
-    } else {
-        System.out.printf("You set wrong day: %d\n" +
-                "Please, change back Day to valid range:\n", day);
-        this.Day = day;
+        if (CheckDate(day, Month, Year)) {
+            this.Day = day;
+        } else {
+            System.out.printf("You set wrong day: %d\n" +
+                    "Please, change back Day to valid range:\n", day);
+            this.Day = day;
+        }
     }
-}
 
     public int getMonth() {
         return Month;
     }
 
     public void setMonth(int month) {
-        if (CheckDate(Day, month, Year)){
+        if (CheckDate(Day, month, Year)) {
             this.Month = month;
         } else {
             System.out.printf("You set wrong month: %d\n" +
@@ -103,7 +103,7 @@ public class Date {
     // НО ЕСЛИ Я УСТАНАВЛИВАЮ НЕВЕРНЫЙ ДЕНЬ, ТО МНЕ ПРИХОДИТ ОШИБКА И О НЕВЕРНОМ ДНЕ, И О НЕВЕРНОМ ГОДЕ
 
     public void setYear(int year) {
-        if (CheckDate(Day, Month, year)){
+        if (CheckDate(Day, Month, year)) {
             this.Year = year;
         } else {
             System.out.printf("You set wrong year: %d\n" +
@@ -127,41 +127,41 @@ public class Date {
         } else return false;
 
         if (year >= 1970 && year <= 2020) {
-                this.Year = year;
+            this.Year = year;
         } else return false;
 
         return true;
     }
+
     public int nextDay() {
-        int nextDay = Day + 1;
-        nextDay = nextDay % 31;
-        if (nextDay == 0){
-            nextDay = 1;
+        if (Day == 31) {
+            Day = 1;
+        } else {
+            Day++;
         }
-        return nextDay;
+        return Day;
     }
 
     public int nextMonth() {
-        int nextMonth = Month + 1;
-        nextMonth = nextMonth % 12;
-        if (nextMonth == 0){
-            nextMonth = 1;
+        if (Month == 12) {
+            Month = 1;
+        } else {
+            Month++;
         }
-        return nextMonth;
+        return Month;
     }
 
     public int nextYear() {
-        int nextYear;
-        nextYear = Year + 1;
-        return nextYear;
+        Year++;
+        return Year;
     }
     public Date addDays(int daysAmount) {
-        if (Day + daysAmount > 31) {
+        if (Day + daysAmount >= 31) {
             for (int d = 0; d < daysAmount; d++){
-                Day = nextDay();
-                if ((Day == 31) && (d < (daysAmount - 1))) {
+                nextDay();
+                if ((Day == 30) && (d < (daysAmount - 1))) {
                     Month = nextMonth();
-                    if ((Month == 12)){
+                    if ((Month == 11)){
                         Year = nextYear();
                     }
                 }

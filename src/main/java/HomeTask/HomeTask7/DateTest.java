@@ -8,7 +8,7 @@ public class DateTest {
         //Изменить установленный год
 //        testDate.setYear(1970);
         System.out.println("Set date: " + testDate);
-        int a = 1, b = 12, c = 19888;
+        int a = 1, b = 12, c = 1988;
         //Проверить дату на валиднность
         Date falseDate = new Date(a, b, c);
         System.out.print("Check date: " + falseDate + " - ");
@@ -27,7 +27,7 @@ public class DateTest {
         //Добавить дни к текущему дню
         System.out.print("Add days to current day: ");
         System.out.println(testDate);
-        testDate.addDays(601);
+        testDate.addDays(370);
 
         testDate.printDatе(testDate);
 //        System.out.println(300%31);
