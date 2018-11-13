@@ -1,9 +1,5 @@
 package com.telesens.academy.lesson14.lambda;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
@@ -12,27 +8,13 @@ public class LambdaDemo {
         String str = "Hello World";
         String res = doSomethingWithString(str, s->s.toUpperCase());
         String res2 = doSomethingWithString(str, String::toLowerCase);
+        Function<String, String> f1 = s->s.toUpperCase();
+        Function<String, String> f2 = String::toLowerCase;
+        String res3 = doSomethingWithString(str, f2);
         System.out.println(res);
         System.out.println(res2);
-
-        String[] straka = {"aest 1", "zez", "bestATest", "hello test!", "tZrue"};
-        List<String> newListStr = new ArrayList<>(Arrays.asList(straka));
-        newListStr.sort((d1, d2)-> {
-
-            if (d1.length() > d2.length()) {
-                return 1;
-            }
-            else if (d1.length() < d2.length())
-                return -1;
-            else return 0;
-
-        });
-        System.out.println(newListStr);
-
-
-
-
-        boolean isInRange = checkNumber(10, num -> num >= 10 && num <= 20);
+        // TODO
+        boolean isInRange = checkNumber(10, null);
         System.out.println(isInRange);
 //        LambdaDemo lambdaDemo = new LambdaDemo();
 //        String resNext = lambdaDemo.doSomethingWithStringNoStatic(str);

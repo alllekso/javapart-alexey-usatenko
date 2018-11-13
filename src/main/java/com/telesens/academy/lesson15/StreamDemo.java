@@ -8,11 +8,11 @@ public class StreamDemo {
     public static void main(String[] args) {
         String[] strArray = {"One", "two", "hello", "bla-blla-bla", "hell", "ella"};
         Arrays.stream(strArray) // на конвеер
-                .filter(s->s.contains("ll"))
-                .filter(s->s.charAt(0) == 'h')
-                //                .filter(StreamDemo::filterStringByLL)
-                //                .forEach(new ConsumerImpl()); // действие над каждым элементом
-                //                .forEach(s->System.out.println(s)); // действие над каждым элементом
+                .filter(s -> s.contains("ll"))
+                .filter(s -> s.charAt(0) == 'h')
+//                .filter(StreamDemo::filterStringByLL)
+//                .forEach(new ConsumerImpl()); // действие над каждым элементом
+//                .forEach(s->System.out.println(s)); // действие над каждым элементом
                 .forEach(System.out::println); // действие над каждым элементом
 
 
@@ -22,9 +22,9 @@ public class StreamDemo {
         Integer[] results = Arrays.stream(intArray)
                 .filter(n -> n > 0 && n < 10)
                 .sorted((n1, n2) -> n2.compareTo(n1))
-                //                .sorted(Comparator.reverseOrder())
+//                .sorted(Comparator.reverseOrder())
                 .toArray(Integer[]::new);
-        //                .forEach(System.out::println);
+//                .forEach(System.out::println);
 
         System.out.println(Arrays.toString(results));
 
@@ -64,10 +64,10 @@ public class StreamDemo {
         System.out.println("Пример 3");
         String[] strNumbers = {"1", "2", "33"};
         Arrays.stream(strNumbers)
-                //                .map(s-> Integer.parseInt(s))
-                //                .map(Integer::parseInt)
+//                .map(s-> Integer.parseInt(s))
+//                .map(Integer::parseInt)
                 .mapToInt(Integer::parseInt)
-                .filter(n-> n > 0 && n < 10)
+                .filter(n -> n > 0 && n < 10)
                 .mapToObj(Objects::toString)
                 .forEach(System.out::println);
 
@@ -76,12 +76,18 @@ public class StreamDemo {
 
         Integer[][] array2D = {{1, 2, 3}, {40, 50, 60, 70}, {100, 200, 300}};
         Optional<Integer> max = Arrays.stream(array2D)
-                //                .map(Arrays::toString)
+//                .map(Arrays::toString)
                 .flatMap(Arrays::stream) // из одного элемента сделать много (стрим)
                 .peek(System.out::println)
                 .max(Integer::compareTo);
 
         System.out.println("Max: " + max.get());
+
+        // Пример 5
+        System.out.println("Пример 5 - генерация");
+        Stream.generate(() -> new Random().nextInt())
+                .limit(10)
+                .forEach(System.out::println);
     }
 
 
