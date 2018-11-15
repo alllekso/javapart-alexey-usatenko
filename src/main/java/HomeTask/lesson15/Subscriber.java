@@ -21,28 +21,33 @@ package HomeTask.lesson15;
 
 import java.util.Objects;
 
-public class Subscriber {
+public class Subscriber implements Comparable<Subscriber> {
     private Long id;
     private String firstName;
     private String lastName;
     private int age;
     private String phoneNumber;
 
-    public int compareTo (Object obj)
-    {
-        Subscriber subscriber = (Subscriber) obj;
-        if (this.id <subscriber.id) {
-            return -1;}
-        else
-        if (this.id>subscriber.id){
-            return 1;  }
+    public Subscriber(Long id, String firstName, String lastName, int age, String phoneNumber) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.phoneNumber = phoneNumber;
+    }
 
+    @Override
+    public int compareTo(Subscriber otherSubscriber) {
+//        if (this.id <otherSubscriber.id) {
+//            return -1;}
+//        else
+//        if (this.id>otherSubscriber.id){
+//            return 1;  }
+//
+//        return 0;
+        return Long.compare(this.id, otherSubscriber.id);
+    }
 
-            //ПОЧЕМУ ТУТ РЕТУРН 0?
-        return 0;}
-
-
-//РАССКАЖИТЕ НА УРОКЕ ПРО ЭТОТ ОВЕРРАЙД. НЕ ПОНЯТНО
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -110,5 +115,4 @@ public class Subscriber {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-
 }
