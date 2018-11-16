@@ -10,24 +10,11 @@
 
 package HomeTask.lesson15;
 
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
-
-/*
-2) Сгенерировать массив 100 абонентов:
-        - id возрастает для каждого следующего абонента (необязательно последовательно)
-        - со случайными именами и фамилиями (брать из подготовленного массива данных)
-        - возраст от 18 до 60 лет
-        - телефонный номер заполнить по следующему правилу (задача была на предыдущих занятиях):
-            - 10 цифр
-            - первый три цифры 999,
-            - последняя 0 или 5
-            - остальные цифры - любые
- */
 
 /*
 2) Сгенерировать массив 100 абонентов:
@@ -41,20 +28,31 @@ import java.util.stream.Stream;
 			- остальные цифры - любые
  */
 public class SubscriberDemo {
-    private static String[] firstNames = {"Maша", "Петя", "Вася", "Миша", "Даша", "Катя", "Саша", "Паша"};
-    private static String[] lastNames = {"Корженко", "Михайленко", "Кузьменко", "Клопотенко", "Половик"};
-    private static Random rand = new Random();
+    private static String [] firstNames = {"Maша", "Петя", "Вася", "Миша", "Даша", "Катя", "Саша", "Паша"};
+    private static String [] lastNames = {"Корженко", "Михайленко", "Кузьменко", "Клопотенко", "Половик"};
+    private static Random rand =  new Random();
     private static long id = 1L;
 
     // TODO
-    private static String txt = "subscribers.txt";
-    private static String xls = "subscribers.xlsx";
+    private static String txtFile = "subscribers.txtFile";
+    private static String xlsFile = "subscribers.xlsx";
+
+    private static String PROP_NAME = "java-part.properties";
 
     public static void main(String[] args) {
 
 //        OutputStream os = new FileOutputStream("");
 //        OutputStreamWriter osw = new OutputStreamWriter(os);
-        try (FileWriter fw = new FileWriter(txt)) {
+        Properties prop = new Properties();
+        InputStream resourceStream = SubscriberDemo.class.getClassLoader().getResourceAsStream(PROP_NAME);
+        try {
+            prop.load(resourceStream);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        String subscriberFile = prop.getProperty("subscriber.txt");
+        try (FileWriter fw = new FileWriter(subscriberFile)) {
             System.out.println("***Generate***");
             Subscriber[] array =
                     Stream
@@ -67,9 +65,9 @@ public class SubscriberDemo {
                             .filter(SubscriberDemo.distinctBy(Subscriber::getPhoneNumber))
                             .peek(System.out::println)
 //                            .peek(ConsumerExceptional.wrap(s->fw.write(s.toString())))
-                            .peek(s -> {
+                            .peek(s->{
                                 try {
-                                    fw.write(s.toString() + "\n");
+                                    fw.write(prepareSubscriber(s)+"\n");
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                 }
@@ -101,20 +99,20 @@ public class SubscriberDemo {
         return new Subscriber(nextId, firstName, lastName, age, phoneNumber);
     }
 
-    public static String generateFirstName() {
+    public static String generateFirstName(){
         int randomNumber = rand.nextInt(firstNames.length);
-        return firstNames[randomNumber];
+        return firstNames [randomNumber];
     }
 
-    public static String generateLastName() {
+    public static String generateLastName(){
         int randomNumber = rand.nextInt(lastNames.length);
         return lastNames[randomNumber];
     }
 
-    public static int generateAge() {
+    public static int generateAge(){
         int lowerLimit = 18;
         int upperLimit = 60;
-        return rand.nextInt(upperLimit - lowerLimit) + lowerLimit;
+        return rand.nextInt(upperLimit-lowerLimit)+lowerLimit;
     }
 
     public static String generatePhoneNumber() {
@@ -131,8 +129,8 @@ public class SubscriberDemo {
 //            last = 5;
 
         long phoneNumber =
-                firstThreeNumbers * 1_000_0000L + // двигаем влево на 7 разрядов
-                        middleDigits * 10 + // умножаем на 10, чтобы сдвинуть влево на один разряд
+                firstThreeNumbers*1_000_0000L + // двигаем влево на 7 разрядов
+                        middleDigits*10 + // умножаем на 10, чтобы сдвинуть влево на один разряд
                         lastDigit; // 0 или 5
 
         return Long.toString(phoneNumber);
@@ -143,4 +141,9 @@ public class SubscriberDemo {
 
         return t -> set.add(keyExtractor.apply(t));
     }
+    private static String prepareSubscriber(Subscriber subscriber) {
+        return subscriber.getId()+", "+subscriber.getFirstName() + ", " + subscriber.getLastName() + ", " + subscriber.getAge() + subscriber.getPhoneNumber();
+    }
+
+
 }
