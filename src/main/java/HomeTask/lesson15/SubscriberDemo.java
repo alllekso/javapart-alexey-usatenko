@@ -10,10 +10,13 @@
 
 package HomeTask.lesson15;
 
-import java.io.*;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.*;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /*
@@ -28,8 +31,8 @@ import java.util.stream.Stream;
 			- остальные цифры - любые
  */
 public class SubscriberDemo {
-    private static String [] firstNames = {"Maша", "Петя", "Вася", "Миша", "Даша", "Катя", "Саша", "Паша"};
-    private static String [] lastNames = {"Корженко", "Михайленко", "Кузьменко", "Клопотенко", "Половик"};
+    private static String[] firstNames = {"мaша", "Петя", "Вася", "Миша", "Даша", "Катя", "Саша", "Паша"};
+    private static String[] lastNames = {"Корженко", "михайленко", "Кузьменко", "Клопотенко", "Половик"};
     private static Random rand =  new Random();
     private static long id = 1L;
 
@@ -82,10 +85,42 @@ public class SubscriberDemo {
 
             list.sort(Comparator.comparingInt(Subscriber::getAge));
 //        list.sort((s1, s2)-> Integer.compare(s1.getAge(), s2.getAge()));
+
             System.out.println(list);
+//            3) 	Из массива:
+//            - исключить дубликаты
+//                    - отсортировать по id,
+//            - сохранить в список (List
+
+
+            List uniqueAbonents = list.stream()
+                    .distinct()
+                    .sorted((i1, i2) -> i2.getId().compareTo(i1.getId()))
+                    .peek(System.out::println)
+                    .collect(Collectors.toList());
+
+//            4) Из списка абонентов:
+//            - отсортировать по телефонному номеру
+//                    - отфильтровать по возрасту от 20 до 30
+//                    - перевести первый символ имени и фамилии в верхний регистр
+//            - перевести все символы кроме первого в нижний регистр
+//                    - вывести на консоль
+            System.out.println("************");
+            list.stream()
+                    .sorted(Comparator.comparing(Subscriber::getPhoneNumber))
+                    .filter(a -> a.getAge() >= 20 && a.getAge() <= 30)
+                    .peek(a -> a.getFirstName().substring(0, 1).toUpperCase())
+                    .peek(a -> a.getLastName().substring(0, 1).toUpperCase())
+                    .peek(a -> a.getFirstName().substring(1).toLowerCase())
+                    .peek(a -> a.getLastName().substring(1).toLowerCase())
+                    .forEach(System.out::println);
+
+
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+
     }
 
     private static Subscriber nextSubscriber() {
