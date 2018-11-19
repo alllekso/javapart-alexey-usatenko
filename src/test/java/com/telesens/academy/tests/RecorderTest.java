@@ -1,4 +1,4 @@
-package com.example.tests;
+package com.telesens.academy.tests;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -20,7 +20,8 @@ public class RecorderTest {
     @BeforeClass(alwaysRun = true)
     public void setUp() throws Exception {
 //    System.setProperty("webdriver.chrome.driver", "/Users/allekso/IdeaProjects/javapart-alexey-usatenko/automation/geckodriver"); chrome
-        System.setProperty("webdriver.gecko.driver", "/Users/allekso/IdeaProjects/javapart-alexey-usatenko/automation/geckodriver");
+//        System.setProperty("webdriver.gecko.driver", "/Users/allekso/IdeaProjects/javapart-alexey-usatenko/automation/geckodriver"); mac
+        System.setProperty("webdriver.gecko.driver", "C:/Users/Lex/IdeaProjects/javapart-alexey-usatenko/files/geckodriver");
 
         driver = new FirefoxDriver();
         baseUrl = "https://www.katalon.com/";
