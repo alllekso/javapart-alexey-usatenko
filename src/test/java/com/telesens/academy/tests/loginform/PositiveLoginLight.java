@@ -42,7 +42,7 @@ public class PositiveLoginLight {
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
 
-    @Test
+    @Test(groups = {"login"})
     public void testPositiveLoginLight() throws Exception {
         driver.get("http://store.demoqa.com/");
         driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Cart'])[1]/following::span[2]")).click();
