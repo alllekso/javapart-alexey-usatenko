@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-
+<!--ALL TESTS-->
+<!--*********-->
 <!--Конфигурация для testNG фреймворка-->
 <suite name="Base Suit">
     <test name="firefox tests">
         <parameter name="browser" value="firefox"/>
         <classes>
             <class name="com.telesens.academy.tests.lesson21.LoginTests"/>
+            <class name="com.telesens.academy.tests.loginform.PositiveLoginLight"/>
         </classes>
     </test>
 
@@ -14,6 +16,7 @@
         <parameter name="browser" value="chrome"/>
         <classes>
             <class name="com.telesens.academy.tests.lesson21.LoginTests"/>
+            <class name="com.telesens.academy.tests.loginform.PositiveLoginLight"/>
         </classes>
     </test>
 </suite>

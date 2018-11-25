@@ -16,12 +16,14 @@ import java.util.concurrent.TimeUnit;
 
 public class LoginTests {
 
+
     private WebDriver driver;
     private String baseUrl;
 
     @Parameters("browser")
     @BeforeClass(alwaysRun = true)
     public void setUp(@Optional("chrome") String browser) throws Exception {
+
         switch (browser) {
             case "chrome":
 //                System.setProperty("webdriver.chrome.driver", "/Users/allekso/Ide/**/aProjects/javapart-alexey-usatenko/files/chromedriver");
@@ -43,7 +45,7 @@ public class LoginTests {
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
 
-    @Test(dataProvider = "negativeLoginProvider")
+    @Test(groups = {"login"}, dataProvider = "negativeLoginProvider")
     public void testNegativeLogin(String login, String password, String errMessage) throws Exception {
         driver.get(baseUrl);
         WebElement myAccountLink = driver.findElement(By.className("account_icon"));

@@ -3,10 +3,7 @@ package com.telesens.academy.tests.loginform;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.util.concurrent.TimeUnit;
 
@@ -18,12 +15,16 @@ public class PositiveLoginLight {
     private boolean acceptNextAlert = true;
     private StringBuffer verificationErrors = new StringBuffer();
 
+    @Parameters("browser")
     @BeforeClass(alwaysRun = true)
     public void setUp(@Optional("firefox") String browser) throws Exception {
+        ReadProperty prop = new ReadProperty();
+        String propFile = "drivers.properties";
+//        String driverPath = prop.readProperty(propFile, "chromeWindowsHomeDriver.url");
         switch (browser) {
             case "chrome":
 //                System.setProperty("webdriver.chrome.driver", "/Users/allekso/Ide/**/aProjects/javapart-alexey-usatenko/files/chromedriver");
-                System.setProperty("webdriver.chrome.driver", "C:/Users/Lex/IdeaProjects/javapart-alexey-usatenko/files/chromedriver.exe");
+                System.setProperty("webdriver.chrome.driver", "driverPath");
                 driver = new ChromeDriver();
                 break;
 
