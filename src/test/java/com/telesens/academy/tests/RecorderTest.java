@@ -1,7 +1,7 @@
 package com.telesens.academy.tests;
 
 import org.openqa.selenium.*;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -26,9 +26,8 @@ public class RecorderTest {
     public void setUp() throws Exception {
 //    System.setProperty("webdriver.chrome.driver", "/Users/allekso/IdeaProjects/javapart-alexey-usatenko/automation/geckodriver"); chrome
 //        System.setProperty("webdriver.gecko.driver", "/Users/allekso/IdeaProjects/javapart-alexey-usatenko/automation/geckodriver"); mac
-        System.setProperty("webdriver.gecko.driver", "C:/Users/Lex/IdeaProjects/javapart-alexey-usatenko/files/geckodriver");
-
-        driver = new FirefoxDriver();
+        System.setProperty("webdriver.chrome.driver", "C:/Users/Lex/IdeaProjects/javapart-alexey-usatenko/files/chromedriver.exe");
+        driver = new ChromeDriver();
         baseUrl = "https://www.katalon.com/";
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
