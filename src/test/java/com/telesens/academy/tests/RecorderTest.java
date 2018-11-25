@@ -15,6 +15,11 @@ public class RecorderTest {
     private WebDriver driver;
     private String baseUrl;
     private boolean acceptNextAlert = true;
+
+    //***********************************************************
+    //Почему мы используем стринг буфер, а не стринг, как обычно?
+    //***********************************************************
+
     private StringBuffer verificationErrors = new StringBuffer();
 
     @BeforeClass(alwaysRun = true)

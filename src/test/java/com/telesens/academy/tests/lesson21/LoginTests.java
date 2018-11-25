@@ -24,12 +24,14 @@ public class LoginTests {
     public void setUp(@Optional("chrome") String browser) throws Exception {
         switch (browser) {
             case "chrome":
-                System.setProperty("webdriver.chrome.driver", "/Users/allekso/IdeaProjects/javapart-alexey-usatenko/files/chromedriver");
+//                System.setProperty("webdriver.chrome.driver", "/Users/allekso/Ide/**/aProjects/javapart-alexey-usatenko/files/chromedriver");
+                System.setProperty("webdriver.chrome.driver", "C:/Users/Lex/IdeaProjects/javapart-alexey-usatenko/files/chromedriver.exe");
                 driver = new ChromeDriver();
                 break;
 
             case "firefox":
-                System.setProperty("webdriver.gecko.driver", "/Users/allekso/IdeaProjects/javapart-alexey-usatenko/files/geckodriver");
+//                System.setProperty("webdriver.gecko.driver", "/Users/allekso/IdeaProjects/javapart-alexey-usatenko/files/geckodriver");
+                System.setProperty("webdriver.gecko.driver", "C:/Users/Lex/IdeaProjects/javapart-alexey-usatenko/files//geckodriver.exe");
                 driver = new FirefoxDriver();
                 break;
 
