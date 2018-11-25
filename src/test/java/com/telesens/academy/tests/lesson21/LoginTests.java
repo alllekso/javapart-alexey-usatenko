@@ -1,5 +1,6 @@
 package com.telesens.academy.tests.lesson21;
 
+import com.telesens.academy.automationSuppotClasses.ReadProperty;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -22,18 +23,23 @@ public class LoginTests {
 
     @Parameters("browser")
     @BeforeClass(alwaysRun = true)
-    public void setUp(@Optional("chrome") String browser) throws Exception {
-
+    public void setUp(@Optional("firefox") String browser) throws Exception {
+        ReadProperty prop = new ReadProperty();
+        String propFile = "drivers.properties";
         switch (browser) {
             case "chrome":
-//                System.setProperty("webdriver.chrome.driver", "/Users/allekso/Ide/**/aProjects/javapart-alexey-usatenko/files/chromedriver");
-                System.setProperty("webdriver.chrome.driver", "C:/Users/Lex/IdeaProjects/javapart-alexey-usatenko/files/chromedriver.exe");
+                String driverPath = prop.readProperty(propFile, "chromeHome.url");
+//                String driverPath = prop.readProperty(propFile,"chromeWork.url");
+//                String driverPath = prop.readProperty(propFile,"chromeMac.url");
+                System.setProperty("webdriver.chrome.driver", driverPath);
                 driver = new ChromeDriver();
                 break;
 
             case "firefox":
-//                System.setProperty("webdriver.gecko.driver", "/Users/allekso/IdeaProjects/javapart-alexey-usatenko/files/geckodriver");
-                System.setProperty("webdriver.gecko.driver", "C:/Users/Lex/IdeaProjects/javapart-alexey-usatenko/files//geckodriver.exe");
+                driverPath = prop.readProperty(propFile, "firefoxHome.url");
+//                driverPath = prop.readProperty(propFile, "firefoxWork.url");
+//                driverPath = prop.readProperty(propFile, "firefoxMac.url");
+                System.setProperty("webdriver.gecko.driver", driverPath);
                 driver = new FirefoxDriver();
                 break;
 
@@ -44,6 +50,7 @@ public class LoginTests {
         baseUrl = "http://store.demoqa.com";
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
+
 
     @Test(groups = {"login", "negative"}, dataProvider = "negativeLoginProvider")
     public void testNegativeLogin(String login, String password, String errMessage) throws Exception {

@@ -1,4 +1,4 @@
-package com.telesens.academy.tests.loginform;
+package com.telesens.academy.automationSuppotClasses;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -7,6 +7,7 @@ import java.util.Properties;
 
 public class ReadProperty {
     public String readProperty(String fileProp, String key) {
+
         Properties prop = new Properties();
         InputStream is = ReadProperty.class.getClassLoader().getResourceAsStream(fileProp);
         try (InputStreamReader isr = new InputStreamReader(is, "UTF-8")) {

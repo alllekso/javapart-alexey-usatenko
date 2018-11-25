@@ -1,5 +1,6 @@
 package com.telesens.academy.tests.loginform;
 
+import com.telesens.academy.automationSuppotClasses.ReadProperty;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -20,17 +21,20 @@ public class PositiveLoginLight {
     public void setUp(@Optional("firefox") String browser) throws Exception {
         ReadProperty prop = new ReadProperty();
         String propFile = "drivers.properties";
-        String driverPath = prop.readProperty(propFile, "firefoxWindowsHomeDriver.url");
         switch (browser) {
             case "chrome":
-                driverPath = prop.readProperty(propFile, "chromeWindowsHomeDriver.url");
-                System.setProperty("webdriver.chrome.driver", "driverPath");
+                String driverPath = prop.readProperty(propFile, "chromeHome.url");
+//                String driverPath = prop.readProperty(propFile,"chromeWork.url");
+//                String driverPath = prop.readProperty(propFile,"chromeMac.url");
+                System.setProperty("webdriver.chrome.driver", driverPath);
                 driver = new ChromeDriver();
                 break;
 
             case "firefox":
-                driverPath = prop.readProperty(propFile, "firefoxWindowsHomeDriver.url");
-                System.setProperty("webdriver.gecko.driver", "driverPath");
+                driverPath = prop.readProperty(propFile, "firefoxHome.url");
+//                driverPath = prop.readProperty(propFile, "firefoxWork.url");
+//                driverPath = prop.readProperty(propFile, "firefoxMac.url");
+                System.setProperty("webdriver.gecko.driver", driverPath);
                 driver = new FirefoxDriver();
                 break;
 
@@ -44,7 +48,7 @@ public class PositiveLoginLight {
 
     @Test(groups = {"login", "positive"})
     public void testPositiveLoginLight() throws Exception {
-        driver.get("http://store.demoqa.com/");
+        driver.get(baseUrl);
         driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Cart'])[1]/following::span[2]")).click();
         driver.findElement(By.id("account")).click();
         driver.findElement(By.id("log")).click();
