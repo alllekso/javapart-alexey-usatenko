@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="chromeGroup">
+    <test name="chrome">
+        <!--        запустить для CHROME-->
+        <!--<parameter name="browser" value="chrome"/>-->
+        <!--        *****запустить для FIREFOX*****-->
+        <parameter name="browser" value="firefox"/>
+        <groups>
+            <run>
+                <!--        *****запустить тесты, связынные с LOGIN*****-->
+                <!--<include name="login"/>-->
+
+                <!--        *****запустить POSITIVE тесты*****-->
+                <!--<include name="positive"/>-->
+
+                <!--        *****запустить NEGATIVE тесты*****-->
+
+                <include name="negative"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="com.telesens.academy.tests.lesson21.LoginTests"/>
+            <class name="com.telesens.academy.tests.loginform.PositiveLoginLight"/>
+        </classes>
+    </test>
+</suite>
