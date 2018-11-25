@@ -20,17 +20,17 @@ public class PositiveLoginLight {
     public void setUp(@Optional("firefox") String browser) throws Exception {
         ReadProperty prop = new ReadProperty();
         String propFile = "drivers.properties";
-        String driverPath = prop.readProperty(propFile, "chromeWindowsHomeDriver.url");
+        String driverPath = prop.readProperty(propFile, "firefoxWindowsHomeDriver.url");
         switch (browser) {
             case "chrome":
-//                System.setProperty("webdriver.chrome.driver", "/Users/allekso/Ide/**/aProjects/javapart-alexey-usatenko/files/chromedriver");
+                driverPath = prop.readProperty(propFile, "chromeWindowsHomeDriver.url");
                 System.setProperty("webdriver.chrome.driver", "driverPath");
                 driver = new ChromeDriver();
                 break;
 
             case "firefox":
-//                System.setProperty("webdriver.gecko.driver", "/Users/allekso/IdeaProjects/javapart-alexey-usatenko/files/geckodriver");
-                System.setProperty("webdriver.gecko.driver", "C:/Users/Lex/IdeaProjects/javapart-alexey-usatenko/files//geckodriver.exe");
+                driverPath = prop.readProperty(propFile, "firefoxWindowsHomeDriver.url");
+                System.setProperty("webdriver.gecko.driver", "driverPath");
                 driver = new FirefoxDriver();
                 break;
 
