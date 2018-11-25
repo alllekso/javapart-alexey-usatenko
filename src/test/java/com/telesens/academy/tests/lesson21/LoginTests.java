@@ -45,7 +45,7 @@ public class LoginTests {
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
 
-    @Test(groups = {"login"}, dataProvider = "negativeLoginProvider")
+    @Test(groups = {"login", "negative"}, dataProvider = "negativeLoginProvider")
     public void testNegativeLogin(String login, String password, String errMessage) throws Exception {
         driver.get(baseUrl);
         WebElement myAccountLink = driver.findElement(By.className("account_icon"));

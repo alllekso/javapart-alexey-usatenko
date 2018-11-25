@@ -54,8 +54,8 @@
                     <!--Путь к конфигурации testng.xml-->
                     <suiteXmlFiles>
                         <suiteXmlFile>suits/testng.xml</suiteXmlFile>
-                        <suiteXmlFile>suits/testngFirefox.xml</suiteXmlFile>
-                        <suiteXmlFile>suits/testngChrome.xml</suiteXmlFile>
+                        <!--<suiteXmlFile>suits/testngFirefox.xml</suiteXmlFile>-->
+                        <suiteXmlFile>suits/homeTask21.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>
