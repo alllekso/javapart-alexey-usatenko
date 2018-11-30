@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="chromeGroup">
-    <test name="chrome">
+<suite name="HomeTask 21">
+    <test name="All tests">
         <!--        запустить для CHROME-->
-        <!--<parameter name="browser" value="chrome"/>-->
+        <!--<parameter name="browser" value="chrome")/>-->
         <!--        *****запустить для FIREFOX*****-->
         <parameter name="browser" value="firefox"/>
+
+        <!--        *****запустить для CHROME & FIREFOX*****-->
+
+        <!--Не удалось запустить все тесты с включенными апраметрами обоих браузеров,
+         это реализовано в классе "testng", но надо разобраться,
+          как передавать сразу 2 параметра в 1 тест-->
+
         <groups>
             <run>
                 <!--        *****запустить тесты, связынные с LOGIN*****-->
