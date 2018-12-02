@@ -7,40 +7,33 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 
 public class ReaderExcel {
-
-    private File file = new File(PropertyDemo.readProperty("loginFile"));
-//    public static String[][] readFromXL(String firstName, String secondName, String address, String city, String state, int zipCode, String country, int homePhone, int mobilePhone, String addressAlias){
-
-
+    private static final int COUNT_COLUMNS = 0;
     public static void main(String[] args) {
-        ReaderExcel readerExcel = new ReaderExcel();
-        readerExcel.getDataExcel("sheet1");
-    }
+        File file = new File(PropertyDemo.readProperty("loginFile"));
 
-    public void readExcel(String sheetName) throws IOException {
-        XSSFWorkbook workbook = new XSSFWorkbook(new FileInputStream(file));
-        XSSFSheet sheet = workbook.getSheet(sheetName);
-        for (int r = 0; r < sheet.getLastRowNum() + 1; r++) {
-            StringBuilder data = new StringBuilder();
+        try (XSSFWorkbook workbook = new XSSFWorkbook(new FileInputStream(file))) {
+            XSSFSheet sheet = workbook.getSheet("Sheet1");
+            for (int r = 0; r <= sheet.getLastRowNum(); r++) {
             XSSFRow row = sheet.getRow(r);
-            for (int c = 0; c < row.getLastCellNum(); c++) {
-                data.append(row.getCell(c).getStringCellValue());
-                data.append(" ");
-            }
-            System.out.println("\t" + data);
+                String firstName = row.getCell(0).getStringCellValue();
+                String secondName = row.getCell(1).getStringCellValue();
+                String address = row.getCell(2).getStringCellValue();
+                String city = row.getCell(3).getStringCellValue();
+                String region = row.getCell(4).getStringCellValue();
+                int zip = (int) row.getCell(5).getNumericCellValue();
+                String state = row.getCell(6).getStringCellValue();
+                int mobilePhone = (int) row.getCell(7).getNumericCellValue();
+                int phone = (int) row.getCell(7).getNumericCellValue();
+                String addressRef = row.getCell(9).getStringCellValue();
+                System.out.printf("%s | %s | %s| %s | %s | %d | %s | %d | %d | %s \n", firstName, secondName, address, city, region, zip, state, mobilePhone, phone, addressRef);
         }
-        workbook.close();
-    }
-
-    public void getDataExcel(String sheet) {
-        System.out.println(String.format("\nДанные из таблицы: %s", sheet));
-        try {
-            readExcel(sheet);
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 }
+
+
+//Kolya	Ivanov	Petrovskogo st. 35	Kharkov	Alaska	61033	United States	3,80935E+12	93234567	addressAddedRef
