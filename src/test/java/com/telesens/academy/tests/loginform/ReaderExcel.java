@@ -25,9 +25,9 @@ public class ReaderExcel {
                 int zip = (int) row.getCell(5).getNumericCellValue();
                 String state = row.getCell(6).getStringCellValue();
                 int mobilePhone = (int) row.getCell(7).getNumericCellValue();
-                int phone = (int) row.getCell(7).getNumericCellValue();
+                int phone = (int) row.getCell(8).getNumericCellValue();
                 String addressRef = row.getCell(9).getStringCellValue();
-                System.out.printf("%s | %s | %s| %s | %s | %d | %s | %d | %d | %s \n", firstName, secondName, address, city, region, zip, state, mobilePhone, phone, addressRef);
+                System.out.printf("%s | %s | %s | %s | %s | %d | %s | %d | %d | %s \n", firstName, secondName, address, city, region, zip, state, mobilePhone, phone, addressRef);
         }
         } catch (Exception e) {
             e.printStackTrace();
