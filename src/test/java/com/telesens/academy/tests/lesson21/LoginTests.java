@@ -28,17 +28,17 @@ public class LoginTests {
         String propFile = "drivers.properties";
         switch (browser) {
             case "chrome":
-                String driverPath = prop.readProperty(propFile, "chromeHome.url");
+//                String driverPath = prop.readProperty(propFile, "chromeHome.url");
 //                String driverPath = prop.readProperty(propFile,"chromeWork.url");
-//                String driverPath = prop.readProperty(propFile,"chromeMac.url");
+                String driverPath = prop.readProperty(propFile, "chromeMac.url");
                 System.setProperty("webdriver.chrome.driver", driverPath);
                 driver = new ChromeDriver();
                 break;
 
             case "firefox":
-                driverPath = prop.readProperty(propFile, "firefoxHome.url");
+//                driverPath = prop.readProperty(propFile, "firefoxHome.url");
 //                driverPath = prop.readProperty(propFile, "firefoxWork.url");
-//                driverPath = prop.readProperty(propFile, "firefoxMac.url");
+                driverPath = prop.readProperty(propFile, "firefoxMac.url");
                 System.setProperty("webdriver.gecko.driver", driverPath);
                 driver = new FirefoxDriver();
                 break;
