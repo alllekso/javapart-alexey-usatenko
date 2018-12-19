@@ -48,7 +48,7 @@ public class locatorsTest {
 
         @Test(groups = {"login", "positive"})
         public void testPositiveLoginLight() throws Exception {
-            driver.get("https://******/");
+            driver.get("https://f3.preprod.rocks");
             driver.findElement(By.cssSelector("a.pl-0:nth-child(1)")).click();
             driver.findElement(By.cssSelector("button.mr-3")).click();
             Thread.sleep(3000);
@@ -72,7 +72,11 @@ public class locatorsTest {
             driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Order confirmation'])[2]/following::button[1]")).click();
             driver.findElement(By.xpath("//*[@id=\"BaseInputId-5\"]")).sendKeys("1");
             driver.findElement(By.xpath("//*[@id=\"BaseInputId-5\"]")).sendKeys(Keys.ENTER);
-            driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='USD'])[8]/following::div[3]")).click();
+            System.out.println("Pressed Enter");
+            Thread.sleep(3000);
+            System.out.println("Wait 3 sec");
+            driver.findElement(By.cssSelector("button.is-m:nth-child(1)")).click();
+            Thread.sleep(1000);
             driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Order confirmation'])[1]/following::button[1]")).click();
 
 

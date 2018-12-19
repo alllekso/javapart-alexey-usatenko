@@ -1,6 +1,8 @@
 package com.telesens.academy.tests.lesson21;
 
 import com.telesens.academy.automationSuppotClasses.ReadProperty;
+import com.telesens.academy.tests.demoqa.page.MainPage;
+import com.telesens.academy.tests.demoqa.page.YourAccountPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -52,27 +54,39 @@ public class LoginTests {
     }
 
 
-    @Test(groups = {"login", "negative"}, dataProvider = "negativeLoginProvider")
+    @Test(dataProvider = "negativeLoginProvider")
     public void testNegativeLogin(String login, String password, String errMessage) throws Exception {
-        driver.get(baseUrl);
-        WebElement myAccountLink = driver.findElement(By.className("account_icon"));
-        myAccountLink.click();
-        WebElement usernameField = driver.findElement(By.id("log"));
-        usernameField.clear();
-        usernameField.sendKeys(login);
+//        driver.get(baseUrl);
+        // Длинно
+        MainPage mainPage = new MainPage(driver);
+        mainPage.goToHome();
+        YourAccountPage yourAccountPage = mainPage.clickToMyAccount();
+
+        // Коротко
+//        new MainPage(driver)
+//                .goToHome()
+//                .mainPage().clickToMyAccount()
+//                .yourAccountPage().enterLogin(login);
+
+//        WebElement usernameField = driver.findElement(By.id("log"));
+//        usernameField.clear();
+//        usernameField.sendKeys(login);
+//        YourAccountPage yourAccountPage = new YourAccountPage(driver);
+//        yourAccountPage.enterLogin(login);
         WebElement passwordField = driver.findElement(By.id("pwd"));
         passwordField.clear();
         passwordField.sendKeys(password);
         WebElement loginButton = driver.findElement(By.id("login"));
         loginButton.click();
-        Thread.sleep(3000); // bad practice
+//        Thread.sleep(3000); // bad practice
 //        waitForJSandJQueryToLoad();
 //        WebElement message = driver.findElement(By.className("response"));
-//        WebElement message = driver.findElement(By.xpath("//p[@class='response']/strong[contains(.,'ERROR')]/../text"));
-        WebElement message = (new WebDriverWait(driver, 7))
-                .until(ExpectedConditions
-                        .presenceOfElementLocated(By.className("response")));
-        Assert.assertEquals(message.getText(), errMessage);
+        WebElement message = driver.findElement(By.xpath("//p[@class='response'][contains(.,'ERROR')]"));
+//        WebElement message = (new WebDriverWait(driver, 7))
+//                .until(ExpectedConditions
+//                        .presenceOfElementLocated(By.className("response")));
+        Assert.assertEquals(message.getText(),errMessage);
+        // Veri
     }
 
     @AfterClass

@@ -1,9 +1,11 @@
 package com.telesens.academy.tests.loginform;
 
+import com.academy.automationpractice.ddt.framework.model.AddressData;
 import com.telesens.academy.lesson16.PropertyDemo;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.testng.annotations.DataProvider;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -32,8 +34,20 @@ public class ReaderExcel {
         } catch (Exception e) {
             e.printStackTrace();
         }
+//        @DataProvider(name="creationAddress")
+//        private Object[] getCreationAddressData() {
+//            return new Object[]{
+//                    new AddressData()
+//                            .withFirstName(firstName)
+//                            .withLastName("Ivanov")
+//                            .withAddress("Petrovskogo st. 35")
+//                            .withCity("Kharkov")
+//                            .withState("Alaska")
+//                            .withZipCode("61033")
+//                            .withCountry("United States")
+//                            .withHomePhone("+3809353613437")
+//                            .withMobilePhone("093234567")
+//                            .withAddressAlias("addressAddedRef")
+//            };
     }
 }
-
-
-//Kolya	Ivanov	Petrovskogo st. 35	Kharkov	Alaska	61033	United States	3,80935E+12	93234567	addressAddedRef
