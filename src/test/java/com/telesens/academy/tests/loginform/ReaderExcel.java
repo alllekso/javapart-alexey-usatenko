@@ -1,11 +1,9 @@
 package com.telesens.academy.tests.loginform;
 
-import com.academy.automationpractice.ddt.framework.model.AddressData;
 import com.telesens.academy.lesson16.PropertyDemo;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.testng.annotations.DataProvider;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -14,6 +12,7 @@ public class ReaderExcel {
     private static final int COUNT_COLUMNS = 0;
     public static void main(String[] args) {
         File file = new File(PropertyDemo.readProperty("loginFile"));
+//        Object[][] addressData = new Object[10][5];
 
         try (XSSFWorkbook workbook = new XSSFWorkbook(new FileInputStream(file))) {
             XSSFSheet sheet = workbook.getSheet("Sheet1");
@@ -30,13 +29,14 @@ public class ReaderExcel {
                 int phone = (int) row.getCell(8).getNumericCellValue();
                 String addressRef = row.getCell(9).getStringCellValue();
                 System.out.printf("%s | %s | %s | %s | %s | %d | %s | %d | %d | %s \n", firstName, secondName, address, city, region, zip, state, mobilePhone, phone, addressRef);
+//                return addressData;
         }
         } catch (Exception e) {
             e.printStackTrace();
         }
-//        @DataProvider(name="creationAddress")
-//        private Object[] getCreationAddressData() {
-//            return new Object[]{
+////        @DataProvider(name="creationAddress")
+//        private Object[][] getCreationAddressData() {
+//            return new Object[][]{
 //                    new AddressData()
 //                            .withFirstName(firstName)
 //                            .withLastName("Ivanov")
